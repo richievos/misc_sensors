@@ -1,5 +1,6 @@
-#include <Wire.h>
 #include "ph_robotank.h"
+
+#include <Wire.h>
 
 #include "esphome/core/log.h"
 
@@ -16,7 +17,7 @@ float esphome_readPHSignal_RoboTankPHBoard(const uint8_t i2cAddress) {
 
     uint8_t count = 0;  // count imcoming bytes
     uint8_t byteCountToRead = 8;
-    String i = "";                                  // create string of incoming data
+    String i = "";                                    // create string of incoming data
     ::Wire.requestFrom(i2cAddress, byteCountToRead);  // request 8 bytes from pH circuit
     while (::Wire.available())                        // read the 8 incoming bytes
     {
@@ -30,14 +31,11 @@ float esphome_readPHSignal_RoboTankPHBoard(const uint8_t i2cAddress) {
     return pH;               // return pH
 }
 
-
 void PHSensor::setup() {
-    // This will be called by ESPHome upon startup, initialize the sensor
+    ESP_LOGI("ph_robotank", "Setting up with sda=%i, scl=%i", _sda, _scl);
+
+    ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int)10000);
     // setupPH_RoboTankPHBoard();
-
-    ESP_LOGI("custom", "Setting up with sda=%i, scl=%i", _sda, _scl);
-
-    ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int) 10000);
     ::Wire.setClock(10000);
     // ::Wire.setTimeout(500); // milliseconds
 
@@ -45,14 +43,9 @@ void PHSensor::setup() {
 }
 
 void PHSensor::update() {
-    if (!_hasBeenSetup) {
-        ESP_LOGW("custom", "Was not setup before trying to read ph! Setting up");
-        // _hasBeenSetup = true;
-        setup();
-    }
-    ESP_LOGD("custom", "Reading ph with sda=%i, scl=%i, address=%i", _sda, _scl, _i2cAddress);
+    ESP_LOGD("ph_robotank", "Reading ph with sda=%i, scl=%i, address=%i", _sda, _scl, _i2cAddress);
     const auto ph = esphome_readPHSignal_RoboTankPHBoard(_i2cAddress);
-    ESP_LOGD("custom", "Read ph=%f", ph);
+    ESP_LOGD("ph_robotank", "Read ph=%f", ph);
 
     publish_state(ph);
 }
@@ -60,8 +53,6 @@ void PHSensor::update() {
 void PHSensor::set_address(uint8_t address) { _i2cAddress = address; }
 void PHSensor::set_sda(uint8_t sda) { _sda = sda; }
 void PHSensor::set_scl(uint8_t scl) { _scl = scl; }
-
-
 
 }  // namespace ph_robotank
 
