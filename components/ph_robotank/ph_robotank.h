@@ -13,8 +13,6 @@ namespace ph_robotank {
 
 class PHSensor : public sensor::Sensor, public PollingComponent {
    public:
-    uint8_t _i2cAddress;
-
     // constructor
     // PHSensor(uint32_t update_interval) : PollingComponent(update_interval) {}
 
@@ -22,6 +20,12 @@ class PHSensor : public sensor::Sensor, public PollingComponent {
     void update() override;
 
     void set_address(uint8_t address);
+
+   private:
+    uint8_t _i2cAddress;
+    uint8_t _i2c_sda;
+    uint8_t _i2c_scl;
+
 };
 
 }  // namespace ph_robotank

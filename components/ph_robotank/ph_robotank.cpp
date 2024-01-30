@@ -1,5 +1,4 @@
-// #include "esphome.h"
-// #include <Wire.h>
+#include <Wire.h>
 #include "ph_robotank.h"
 
 #include "ph-robotank-sensor.h"
@@ -10,7 +9,9 @@ namespace ph_robotank {
 
 void PHSensor::setup() {
     // This will be called by ESPHome upon startup, initialize the sensor
-    setupPH_RoboTankPHBoard();
+    // setupPH_RoboTankPHBoard();
+
+    ::Wire.begin(static_cast<int>(_i2c_sda), static_cast<int>(_i2c_scl), (int) 10000);
 }
 
 void PHSensor::update() {
