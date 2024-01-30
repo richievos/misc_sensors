@@ -28,6 +28,8 @@ class PHSensor : public sensor::Sensor, public PollingComponent {
     uint8_t _sda;
     uint8_t _scl;
 
+    bool _hasBeenSetup = false;
+
 };
 
 }  // namespace ph_robotank

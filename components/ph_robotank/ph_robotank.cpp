@@ -43,9 +43,14 @@ void PHSensor::setup() {
 }
 
 void PHSensor::update() {
-    ESP_LOGI("custom", "Reading ph");
+    if (!_hasBeenSetup) {
+        ESP_LOGW("custom", "Was not setup before trying to read ph! Setting up");
+        _hasBeenSetup = true;
+        setup();
+    }
+    ESP_LOGD("custom", "Reading ph");
     const auto ph = esphome_readPHSignal_RoboTankPHBoard(_i2cAddress);
-    ESP_LOGI("custom", "Read ph=%f", ph);
+    ESP_LOGD("custom", "Read ph=%f", ph);
 
     publish_state(ph);
 }
