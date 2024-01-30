@@ -35,7 +35,7 @@ void PHSensor::setup() {
     // This will be called by ESPHome upon startup, initialize the sensor
     // setupPH_RoboTankPHBoard();
 
-    ESP_LOGD("custom", "Setting up with sda=%i, scl=%i", _sda, _scl);
+    ESP_LOGI("custom", "Setting up with sda=%i, scl=%i", _sda, _scl);
 
     ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int) 10000);
     ::Wire.setClock(10000);
@@ -43,7 +43,9 @@ void PHSensor::setup() {
 }
 
 void PHSensor::update() {
+    ESP_LOGI("custom", "Reading ph");
     const auto ph = esphome_readPHSignal_RoboTankPHBoard(_i2cAddress);
+    ESP_LOGI("custom", "Read ph=%f", ph);
 
     publish_state(ph);
 }
