@@ -8,6 +8,9 @@
 
 #include <memory>
 
+namespace esphome {
+namespace ph_robotank {
+
 class PHSensor : public PollingComponent {
    public:
     std::unique_ptr<Sensor> _ph_sensor;
@@ -21,3 +24,6 @@ class PHSensor : public PollingComponent {
 
     void set_address(uint8_t address) { _i2cAddress = address; }
 };
+
+}  // namespace ph_robotank
+}  // namespace esphome
