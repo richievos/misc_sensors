@@ -16,8 +16,10 @@ void PHSensor::setup() {
 void PHSensor::update() {
     const auto ph = readPHSignal_RoboTankPHBoard(_i2cAddress);
 
-    ph_sensor->publish_state(ph);
+    publish_state(ph);
 }
+
+void PHSensor::set_address(uint8_t address) { _i2cAddress = address; }
 
 }  // namespace ph_robotank
 
