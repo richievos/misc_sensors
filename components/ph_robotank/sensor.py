@@ -40,7 +40,7 @@ CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accurac
 async def to_code(config):
     var = await sensor.new_sensor(config)
     cg.add_library("Wire", None)
-    cg.add(var.set_sda(i2c_pins[CONF_SDA])
-    cg.add(var.set_scl(i2c_pins[CONF_SCL])
+    cg.add(var.set_sda(i2c_pins[CONF_SDA]))
+    cg.add(var.set_scl(i2c_pins[CONF_SCL]))
     await cg.register_component(var, config)
     await sensor.register_sensor(var, config)
