@@ -1,7 +1,6 @@
 #include <Wire.h>
 #include "ph_robotank.h"
 
-#include "ph-robotank-sensor.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
