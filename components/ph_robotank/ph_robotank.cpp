@@ -2,7 +2,7 @@
 // #include <Wire.h>
 #include "ph_robotank.h"
 
-#include "../../lib/robotank/ph-robotank-sensor.h"
+#include "ph-robotank-sensor.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
