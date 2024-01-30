@@ -6,7 +6,7 @@ from esphome.const import CONF_ID
 DEPENDENCIES = []
 MULTI_CONF = True
 
-ph_sensor_ns = cg.esphome_ns.namespace('ph_sensor')
+ph_sensor_ns = cg.esphome_ns.namespace('ph_robotank')
 PHSensor = ph_sensor_ns.class_('PHSensor', cg.PollingComponent, sensor.Sensor)
 
 CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accuracy_decimals=2).extend({
