@@ -50,7 +50,7 @@ void PHSensor::update() {
         // _hasBeenSetup = true;
         setup();
     }
-    ESP_LOGD("custom", "Reading ph with sda=%i, scl=%i", _sda, _scl);
+    ESP_LOGD("custom", "Reading ph with sda=%i, scl=%i, address=%i", _sda, _scl, _i2cAddress);
     const auto ph = esphome_readPHSignal_RoboTankPHBoard(_i2cAddress);
     ESP_LOGD("custom", "Read ph=%f", ph);
 
