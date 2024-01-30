@@ -15,7 +15,7 @@ void PHSensor::setup() {
 }
 
 void PHSensor::update() {
-    const auto ph = readPHSignal_RoboTankPHBoard(_i2cAddress);
+    const auto ph = esphome_readPHSignal_RoboTankPHBoard(_i2cAddress);
 
     publish_state(ph);
 }

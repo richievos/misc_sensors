@@ -7,12 +7,12 @@
 /*******************************
  * RoboTank PH Sensor Integration
  *******************************/
-void setupPH_RoboTankPHBoard() {
+void esphome_setupPH_RoboTankPHBoard() {
     ::Wire.setClock(10000);  // set I2C bus to 10 KHz - this is important!
 }
 
 // read the current ph directly from the board
-float readPHSignal_RoboTankPHBoard(const uint8_t i2cAddress) {
+float esphome_readPHSignal_RoboTankPHBoard(const uint8_t i2cAddress) {
     ::Wire.beginTransmission(i2cAddress);  // start transmission
     ::Wire.write("R");                     // ask for pH
     ::Wire.write(0);                       // send closing byte
