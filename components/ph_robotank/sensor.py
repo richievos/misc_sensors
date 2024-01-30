@@ -5,7 +5,8 @@ from esphome.components import sensor
 from esphome.const import (
     CONF_ADDRESS,
     CONF_ID,
-    # CONF_INTERVAL
+    CONF_SCL,
+    CONF_SDA
 )
 
 DEPENDENCIES = []
