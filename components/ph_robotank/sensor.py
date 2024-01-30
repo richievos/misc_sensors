@@ -28,7 +28,7 @@ PHSensor = ph_sensor_ns.class_('PHSensor', sensor.Sensor, cg.PollingComponent)
 # ).extend(cv.polling_component_schema("60s"))
 
 CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accuracy_decimals=2).extend({
-    cv.GenerateID(): cv.declare_id(CCS811Component),
+    cv.GenerateID(): cv.declare_id(PHSensor),
     cv.Required(CONF_ADDRESS): cv.positive_int,
 }).extend(cv.polling_component_schema('60s'))
 
