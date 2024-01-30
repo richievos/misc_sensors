@@ -40,12 +40,14 @@ void PHSensor::setup() {
     ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int) 10000);
     ::Wire.setClock(10000);
     ::Wire.setTimeout(500); // milliseconds
+
+    _hasBeenSetup = true;
 }
 
 void PHSensor::update() {
     if (!_hasBeenSetup) {
         ESP_LOGW("custom", "Was not setup before trying to read ph! Setting up");
-        _hasBeenSetup = true;
+        // _hasBeenSetup = true;
         setup();
     }
     ESP_LOGD("custom", "Reading ph");
