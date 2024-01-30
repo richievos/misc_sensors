@@ -39,7 +39,7 @@ void PHSensor::setup() {
 
     ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int) 10000);
     ::Wire.setClock(10000);
-    ::Wire.setTimeout(500); // milliseconds
+    // ::Wire.setTimeout(500); // milliseconds
 
     _hasBeenSetup = true;
 }
