@@ -9,7 +9,7 @@ from esphome.const import (
 )
 
 DEPENDENCIES = []
-MULTI_CONF = True
+# MULTI_CONF = True
 
 ph_sensor_ns = cg.esphome_ns.namespace('ph_robotank')
 PHSensor = ph_sensor_ns.class_('PHSensor', sensor.Sensor, cg.PollingComponent)
