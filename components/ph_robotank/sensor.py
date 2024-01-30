@@ -43,5 +43,6 @@ async def to_code(config):
     cg.add_library("Wire", None)
     cg.add(var.set_sda(config[CONF_SDA]))
     cg.add(var.set_scl(config[CONF_SCL]))
+    cg.add(var.set_address(config[CONF_ADDRESS]))
     await cg.register_component(var, config)
     await sensor.register_sensor(var, config)
