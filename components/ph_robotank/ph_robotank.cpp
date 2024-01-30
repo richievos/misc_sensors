@@ -35,9 +35,11 @@ void PHSensor::setup() {
     // This will be called by ESPHome upon startup, initialize the sensor
     // setupPH_RoboTankPHBoard();
 
+    ESP_LOGD("custom", "Setting up with sda=%i, scl=%i", _sda, _scl);
+
     ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int) 10000);
     ::Wire.setClock(10000);
-    ::Wire.setTimeout(500000);
+    ::Wire.setTimeout(500); // milliseconds
 }
 
 void PHSensor::update() {
