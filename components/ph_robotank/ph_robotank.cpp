@@ -35,7 +35,7 @@ void PHSensor::setup() {
     // This will be called by ESPHome upon startup, initialize the sensor
     // setupPH_RoboTankPHBoard();
 
-    ::Wire.begin(static_cast<int>(_i2c_sda), static_cast<int>(_i2c_scl), (int) 10000);
+    ::Wire.begin(static_cast<int>(_sda), static_cast<int>(_scl), (int) 10000);
     ::Wire.setClock(10000);
     ::Wire.setTimeout(500000);
 }
@@ -47,6 +47,10 @@ void PHSensor::update() {
 }
 
 void PHSensor::set_address(uint8_t address) { _i2cAddress = address; }
+void PHSensor::set_sda(uint8_t sda) { _sda = sda; }
+void PHSensor::set_scl(uint8_t scl) { _scl = scl; }
+
+
 
 }  // namespace ph_robotank
 

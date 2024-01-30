@@ -20,11 +20,13 @@ class PHSensor : public sensor::Sensor, public PollingComponent {
     void update() override;
 
     void set_address(uint8_t address);
+    void set_sda(uint8_t sda);
+    void set_scl(uint8_t scl);
 
    private:
     uint8_t _i2cAddress;
-    uint8_t _i2c_sda;
-    uint8_t _i2c_scl;
+    uint8_t _sda;
+    uint8_t _scl;
 
 };
 

@@ -1,6 +1,8 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor
+from esphome import pins
+
 
 from esphome.const import (
     CONF_ADDRESS,
@@ -31,12 +33,14 @@ PHSensor = ph_sensor_ns.class_('PHSensor', sensor.Sensor, cg.PollingComponent)
 CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accuracy_decimals=2).extend({
     cv.GenerateID(): cv.declare_id(PHSensor),
     cv.Required(CONF_ADDRESS): cv.positive_int,
-    cv.Optional(CONF_SDA, 21): cv.positive_int,
-    cv.Optional(CONF_SCL, 22): cv.positive_int,
+    cv.Optional(CONF_SDA, 21): pins.internal_gpio_output_pin_number,
+    cv.Optional(CONF_SCL, 22): pins.internal_gpio_output_pin_number,
 }).extend(cv.polling_component_schema('60s'))
 
 async def to_code(config):
     var = await sensor.new_sensor(config)
     cg.add_library("Wire", None)
+    cg.add(var.set_sda(i2c_pins[CONF_SDA])
+    cg.add(var.set_scl(i2c_pins[CONF_SCL])
     await cg.register_component(var, config)
     await sensor.register_sensor(var, config)
