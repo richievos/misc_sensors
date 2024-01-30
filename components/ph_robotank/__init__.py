@@ -9,7 +9,7 @@ MULTI_CONF = True
 ph_sensor_ns = cg.esphome_ns.namespace('ph_sensor')
 PHSensor = ph_sensor_ns.class_('PHSensor', cg.PollingComponent, sensor.Sensor)
 
-CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, cg.uint32_t, unit_of_measurement='pH', accuracy_decimals=2).extend({
+CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accuracy_decimals=2).extend({
     cv.GenerateID(): cv.declare_id(PHSensor),
 }).extend(cv.polling_component_schema('60s'))
 
