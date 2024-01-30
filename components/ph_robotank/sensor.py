@@ -5,7 +5,7 @@ from esphome.components import sensor
 from esphome.const import (
     CONF_ADDRESS,
     CONF_ID,
-    CONF_INTERVAL
+    # CONF_INTERVAL
 )
 
 DEPENDENCIES = []
@@ -28,6 +28,7 @@ PHSensor = ph_sensor_ns.class_('PHSensor', sensor.Sensor, cg.PollingComponent)
 # ).extend(cv.polling_component_schema("60s"))
 
 CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accuracy_decimals=2).extend({
+    cv.GenerateID(): cv.declare_id(CCS811Component),
     cv.Required(CONF_ADDRESS): cv.positive_int,
 }).extend(cv.polling_component_schema('60s'))
 
@@ -37,8 +38,7 @@ CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accurac
 #     yield sensor.register_sensor(var, config)
 
 async def to_code(config):
-    pass
-    # var = await sensor.new_sensor(config)
-    # # , config.get(CONF_INTERVAL), config[CONF_ADDRESS]
-    # await cg.register_component(var, config)
-    # await sensor.register_sensor(var, config)
+    var = await sensor.new_sensor(config)
+    # , config.get(CONF_INTERVAL), config[CONF_ADDRESS]
+    await cg.register_component(var, config)
+    await sensor.register_sensor(var, config)
