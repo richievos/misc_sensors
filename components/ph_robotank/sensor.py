@@ -37,6 +37,7 @@ CONFIG_SCHEMA = sensor.sensor_schema(PHSensor, unit_of_measurement='pH', accurac
 #     yield sensor.register_sensor(var, config)
 
 async def to_code(config):
+    pass
     # var = await sensor.new_sensor(config)
     # # , config.get(CONF_INTERVAL), config[CONF_ADDRESS]
     # await cg.register_component(var, config)
