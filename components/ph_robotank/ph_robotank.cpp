@@ -37,7 +37,7 @@ void PHSensor::setup() {
 
     ::Wire.begin(static_cast<int>(_i2c_sda), static_cast<int>(_i2c_scl), (int) 10000);
     ::Wire.setClock(10000);
-    ::Wire.setWireTimeout(500000);
+    ::Wire.setTimeout(500000);
 }
 
 void PHSensor::update() {
