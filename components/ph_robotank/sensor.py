@@ -45,4 +45,3 @@ async def to_code(config):
     cg.add(var.set_scl(config[CONF_SCL]))
     cg.add(var.set_address(config[CONF_ADDRESS]))
     await cg.register_component(var, config)
-    await sensor.register_sensor(var, config)
