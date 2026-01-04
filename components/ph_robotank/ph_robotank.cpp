@@ -11,7 +11,7 @@ namespace ph_robotank {
 // read the current ph directly from the board
 float esphome_readPHSignal_RoboTankPHBoard(const uint8_t i2cAddress) {
     ::Wire.beginTransmission(i2cAddress);  // start transmission
-    ::Wire.write("R");                     // ask for pH
+    ::Wire.write(reinterpret_cast<uint8_t*>("R"));                     // ask for pH
     ::Wire.write(0);                       // send closing byte
     ::Wire.endTransmission();              // end transmission
 
